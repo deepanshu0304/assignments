@@ -17,6 +17,23 @@ function objectMethods(obj) {
   let newObj = Object.assign({}, obj, { newProperty: "newValue" });
   console.log("After Object.assign():", newObj);
 
+  // console.log(obj);
+  // let newObj2 = obj;
+  // // newObj2 = { ...newObj2, deepu: "deepanshu" }
+  // newObj2.deepu = "deepanshu";
+  // console.log(newObj2);
+  // console.log(obj);
+
+  // let arr1 = [2, 2, 3];
+  // let arr2 = arr1;
+  // arr2.push(7);
+  // console.log(arr1);
+  // // console.log(arr1);
+  // console.log(arr2);
+  // arr1.push(18)
+  // console.log(arr1);
+  // // console.log(arr1);
+  // console.log(arr2);
 
 }
 
