@@ -4,7 +4,24 @@
  * the function should return a promise just like before
  */
 
-function sleep(milliseconds) {
+// async function sleep(milliseconds) {
+
+//     const deepu =  new Promise((resolve,reject)=>{return setTimeout(resolve,milliseconds)})
+//     await deepu;
+// }
+const sleep = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+const action = async () => {
+    for (let i = 1; i < 5; i++) {
+        console.log(`Round ${i}`)
+        console.log('Waiting for 500ms')
+        await sleep(5000)
+        console.log('Posting')
+    }
 }
+
+action();
 
 module.exports = sleep;
