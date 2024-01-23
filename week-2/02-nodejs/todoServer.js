@@ -39,11 +39,60 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
-  module.exports = app;
+const express = require('express');
+// const bodyParser = require('body-parser');
+
+const app = express();
+
+app.use(express.json());
+
+const todos = [{
+  title:"frgrgb",
+},{title:"edfgrg"}];
+let globalId = 0;
+app.get("/todos", (req, res) => {
+  // res.status(201).send("This is Deepanshu garg")
+  res.status(200).json(todos);
+})
+
+app.get("/todos/:id", (req, res) => {
+  const id = req.params.id;
+  const todo = todos.find((item) => {
+    return item.id == id;
+  });
+
+  if (todo) {
+    return res.status(200).json({ todo });
+  }
+   res.status(404).send("Not Found")
+})
+
+app.post("/todos", (req, res) => {
+  console.log(req.body);
+  const title = req.body.title;
+  const completed = req.body.completed;
+  const description = req.body.description;
+  globalId++;
+  todos.push({
+    globalId,
+    title,
+    completed,
+    description
+  });
+  res.status(200).send({ id: globalId });
+
+});
+ 
+// app.use((req, res, next) => {
+//   res.status(404).send();
+// });
+
+// app.all("*", (req, res) => {
+//   res.status(404).send();
+// })
+ 
+app.listen(3000, () => {
+  console.log("Server started");
+})
+
+module.exports = app;
